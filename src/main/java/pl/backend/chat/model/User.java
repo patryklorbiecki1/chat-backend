@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Data
@@ -26,4 +28,9 @@ public class User {
     private String email;
     @Column(name = "user_number",unique = true)
     private String number;
+    public enum Roles{
+        ROLE_USER,ROLE_ADMIN,ROLE_MOD
+    }
+    @Column(name="user_roles",nullable = false)
+    Set<Roles> roles = new HashSet<>();
 }
