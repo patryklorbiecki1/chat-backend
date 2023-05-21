@@ -1,8 +1,8 @@
-package pl.backend.service;
+package pl.backend.chat.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.backend.repository.UserRepository;
+import pl.backend.chat.repository.UserRepository;
 
 @Service
 public class UserService {

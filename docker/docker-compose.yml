@@ -1,0 +1,11 @@
+version: '3.1'
+services:
+  postgresql:
+    container_name: postgres-chat
+    image: postgres
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+      PGDATA: /data/postgres
+    ports:
+      - "5432:5432"

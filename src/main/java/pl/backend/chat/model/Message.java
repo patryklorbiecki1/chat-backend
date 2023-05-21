@@ -1,4 +1,4 @@
-package pl.backend.model;
+package pl.backend.chat.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

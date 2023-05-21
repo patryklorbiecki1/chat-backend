@@ -1,16 +1,17 @@
-package pl.backend.service;
+package pl.backend.chat.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.backend.repository.ChatRepository;
+import pl.backend.chat.repository.ChatRepository;
 
 @Service
-public class ChatService {
+public class ChatServiceImpl implements ChatService{
     private final ChatRepository chatRepository;
-
     @Autowired
-    public ChatService(ChatRepository chatRepository) {
+    public ChatServiceImpl(ChatRepository chatRepository) {
         this.chatRepository = chatRepository;
     }
+
+
 
 }

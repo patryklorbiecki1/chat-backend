@@ -1,8 +1,8 @@
-package pl.backend.repository;
+package pl.backend.chat.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import pl.backend.model.Message;
+import pl.backend.chat.model.Message;
 @Repository
 public interface MessageRepository extends JpaRepository<Message,Integer> {
 }
