@@ -8,6 +8,7 @@ import pl.backend.chat.model.User;
 import pl.backend.chat.repository.UserRepository;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class UserService {
@@ -37,6 +38,7 @@ public class UserService {
                .email(request.getEmail())
                .number(request.getNumber())
                .password(request.getPassword())
+               .role("ROLE_USER")
                .build();
         userRepository.save(user);
         return MessageResponse.builder()
