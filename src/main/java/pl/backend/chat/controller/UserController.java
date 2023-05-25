@@ -1,10 +1,11 @@
 package pl.backend.chat.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import pl.backend.chat.dto.request.CreateUserRequest;
+import pl.backend.chat.model.User;
 import pl.backend.chat.service.UserService;
 
 @RestController
@@ -20,4 +21,8 @@ public class UserController {
         return ResponseEntity.ok(userService.getAllUser());
     }
 
+    @PostMapping
+    public ResponseEntity<?> createUser(@RequestBody CreateUserRequest request){
+        return new ResponseEntity<>(userService.add(request), HttpStatus.CREATED);
+    }
 }

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import pl.backend.chat.dto.request.AddMessageRequest;
 import pl.backend.chat.model.Chat;
 import pl.backend.chat.model.Message;
 import pl.backend.chat.service.ChatService;
@@ -31,11 +32,11 @@ public class ChatController {
         this.userService = userService;
     }
     @GetMapping("chat/{to}")
-    public void sendMessage(String to, Message message){
+    public void sendMessage(String to, AddMessageRequest request){
         Chat chat = chatService.createOrGetChat(to);
+        Message message = messageService.save(request);
         message.setChat(chat);
         message.setTimestamp(messageService.generateTimeStamp());
-        message = messageService.save(message);
         messagingTemplate.convertAndSend("/topic/messages/" + to, message);
 
     }
