@@ -14,9 +14,11 @@ import java.util.stream.Collectors;
 
 @Service
 public class UserDetailsService {
+    private final UserRepository userRepository;
     @Autowired
-    private UserRepository userRepository;
-
+    public UserDetailsService(UserRepository userRepository){
+        this.userRepository = userRepository;
+    }
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username);
         if (user==null) {
