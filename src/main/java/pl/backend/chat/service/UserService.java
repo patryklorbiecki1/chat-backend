@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.backend.chat.dto.request.CreateUserRequest;
 import pl.backend.chat.dto.response.MessageResponse;
+import pl.backend.chat.model.Role;
 import pl.backend.chat.model.User;
 import pl.backend.chat.repository.UserRepository;
 
@@ -38,7 +39,7 @@ public class UserService {
                .email(request.getEmail())
                .number(request.getNumber())
                .password(request.getPassword())
-               .role("ROLE_USER")
+               .roles(Set.of(Role.ROLE_USER))
                .build();
         userRepository.save(user);
         return MessageResponse.builder()

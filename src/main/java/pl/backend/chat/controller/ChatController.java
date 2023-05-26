@@ -3,10 +3,7 @@ package pl.backend.chat.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pl.backend.chat.dto.request.AddMessageRequest;
 import pl.backend.chat.model.Chat;
 import pl.backend.chat.model.Message;
@@ -32,7 +29,7 @@ public class ChatController {
         this.userService = userService;
     }
     @GetMapping("chat/{to}")
-    public void sendMessage(String to, AddMessageRequest request){
+    public void sendMessage(@PathVariable String to, AddMessageRequest request){
         Chat chat = chatService.createOrGetChat(to);
         Message message = messageService.save(request);
         message.setChat(chat);
@@ -40,7 +37,7 @@ public class ChatController {
         messagingTemplate.convertAndSend("/topic/messages/" + to, message);
 
     }
-    @GetMapping("/getMessages")
+    @GetMapping("getMessages")
     public ResponseEntity<List<Message>> getMessages(@RequestParam String chatName){
         Chat chat = chatService.getChatByName(chatName);
         if(chat!=null){

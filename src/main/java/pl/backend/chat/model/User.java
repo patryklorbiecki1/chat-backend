@@ -28,6 +28,8 @@ public class User {
     private String email;
     @Column(name = "user_number",unique = true)
     private String number;
-    @Column(name="user_roles")
-    private String role;
+    @Column(name = "roles")
+    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
+    @Enumerated(EnumType.STRING)
+    private Set<Role> roles;
 }
