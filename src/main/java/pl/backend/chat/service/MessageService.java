@@ -23,8 +23,8 @@ public class MessageService {
     }
     public Message save(AddMessageRequest request) {
         Message message = Message.builder()
-                .sender(request.getSender())
-                .content(request.getContent())
+                .sender(request.sender())
+                .content(request.content())
                 .timestamp(LocalDate.now().toString())
                 .build();
 

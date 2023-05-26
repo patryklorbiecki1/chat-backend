@@ -26,19 +26,19 @@ public class UserService {
         return userRepository.findAll();
     }
     public MessageResponse add(CreateUserRequest request){
-       if(Boolean.TRUE.equals(userRepository.existsByUsername(request.getUsername()))){
+       if(Boolean.TRUE.equals(userRepository.existsByUsername(request.username()))){
            return MessageResponse.builder()
-                   .message("[ERROR] Username: " + request.getUsername() + " is already taken!").build();
+                   .message("[ERROR] Username: " + request.username() + " is already taken!").build();
        }
-       if(Boolean.TRUE.equals(userRepository.existsByEmail(request.getEmail()))){
+       if(Boolean.TRUE.equals(userRepository.existsByEmail(request.email()))){
            return MessageResponse.builder()
-                   .message("[ERROR] Email: " + request.getEmail() + " is already taken!").build();
+                   .message("[ERROR] Email: " + request.email() + " is already taken!").build();
        }
        User user = User.builder()
-               .username(request.getUsername())
-               .email(request.getEmail())
-               .number(request.getNumber())
-               .password(request.getPassword())
+               .username(request.username())
+               .email(request.email())
+               .number(request.number())
+               .password(request.password())
                .roles(Set.of(Role.ROLE_USER))
                .build();
         userRepository.save(user);
